@@ -1,0 +1,6 @@
+F:\我的小资源\新建文件夹\Model\bin\Debug\Model.dll
+F:\我的小资源\新建文件夹\Model\bin\Debug\Model.pdb
+F:\我的小资源\新建文件夹\Model\obj\Debug\Model.csproj.CoreCompileInputs.cache
+F:\我的小资源\新建文件夹\Model\obj\Debug\Model.dll
+F:\我的小资源\新建文件夹\Model\obj\Debug\Model.pdb
+F:\我的小资源\新建文件夹\Model\obj\Debug\Model.csproj.AssemblyReference.cache
