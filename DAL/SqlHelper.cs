@@ -61,5 +61,25 @@ namespace DAL
                 }
             }
         }
+        public static int ExecuteSql(string SQLString)
+        {
+            using (MySqlConnection connection = new MySqlConnection(connString))
+            {
+                using (MySqlCommand cmd = new MySqlCommand(SQLString, connection))
+                {
+                    try
+                    {
+                        connection.Open();
+                        int rows = cmd.ExecuteNonQuery();
+                        return rows;
+                    }
+                    catch (MySql.Data.MySqlClient.MySqlException e)
+                    {
+                        connection.Close();
+                        throw e;
+                    }
+                }
+            }
+        }
     }
 }
