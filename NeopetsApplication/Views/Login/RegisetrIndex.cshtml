@@ -1,0 +1,57 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>一梦网站注册</title>
+    <link href="~/Content/Login/LoginCSS.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+    <script src="~/Scripts/Login/LoginPublicJS.js"></script>
+</head>
+<body>
+    <div class="login-box">
+        <h1>一梦网站注册</h1>
+        <form method="post" onsubmit="return false">
+            <div class="name">
+                <label>用户账号：</label>
+                @*<input type="text" name="name" class="form-control" value="" /><span class="input-group-addon"><i class="fa fa-pencil"></i></span>*@
+                <input type="text" name="userName" id="txtName" placeholder="请输入邮箱或电话号码" tabindex="1" autocomplete="off" />
+            </div><span style="color:red" id="errorMsg"></span>
+            <div class="password">
+                <label>密&emsp;&emsp;码：</label>
+                <input type="password" name="userPwd" placeholder="请输入密码" id="txtPwd" maxlength="16" tabindex="2" />
+            </div><span style="color:red" id="pwdErrorMsg"></span>
+            <div class="code">
+                <label>验&ensp;证&ensp;码：</label>
+                <input type="text" placeholder="请输入验证码" name="verifyCode" maxlength="4" id="code" tabindex="3" />
+                <div class="codeImg">
+                    @*<img src="~/Content/Login/LoginImage/captcha.jpg"  />*@
+                    <img src="/Login/SecurityCode" onclick="this.src = this.src+'?'" id="codeImg" />
+                </div>
+            </div><span style="color:red" id="vCodeErrorMsg"></span>
+            <div class="login">
+                <button type="submit" id="formLogin" tabindex="5">注册</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="bottom">©2020 </div>
+
+    <div class="screenbg">
+        <ul>
+            <li><a href="javascript:;"><img src="~/Content/Login/LoginImage/0.jpg"></a></li>
+            <li><a href="javascript:;"><img src="~/Content/Login/LoginImage/1.jpeg"></a></li>
+            <li><a href="javascript:;"><img src="~/Content/Login/LoginImage/2.jpeg"></a></li>
+            <li><a href="javascript:;"><img src="~/Content/Login/LoginImage/3.jpg"></a></li>
+        </ul>
+    </div>
+    <div style="text-align:center;">
+
+    </div>
+</body>
+</html>
