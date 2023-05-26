@@ -136,6 +136,25 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\iconfont.css" />
+    <Content Include="Content\PetIndex\PetIndexImage\1.jpg" />
+    <Content Include="Content\PetIndex\PetIndexImage\2.png" />
+    <Content Include="Content\PetIndex\PetIndexImage\log.png" />
+    <Content Include="Content\PetIndex\PetIndexImage\pet1.jpg" />
+    <Content Include="Content\PetIndex\PetIndexImage\pet2.jpg" />
+    <Content Include="Content\PetIndex\PetIndexImage\pet3.jpg" />
+    <Content Include="Content\PetIndex\PetIndexImage\yiwu.png" />
+    <Content Include="Content\PetIndex\plugins.min.css" />
+    <Content Include="Content\PetIndex\Product\1.png" />
+    <Content Include="Content\PetIndex\Product\2.png" />
+    <Content Include="Content\PetIndex\Product\3.png" />
+    <Content Include="Content\PetIndex\Product\4.png" />
+    <Content Include="Content\PetIndex\Product\5.png" />
+    <Content Include="Content\PetIndex\Product\6.png" />
+    <Content Include="Content\PetIndex\Product\7.png" />
+    <Content Include="Content\PetIndex\Product\8.png" />
+    <Content Include="Content\PetIndex\style.min.css" />
+    <Content Include="Content\PetIndex\vendor.min.css" />
     <Content Include="Content\Login\LoginCSS.css" />
     <Content Include="Content\Login\LoginImage\1.jpeg" />
     <Content Include="Content\Login\LoginImage\2.jpeg" />
@@ -148,6 +167,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Content\iconfont.ttf" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -163,7 +183,12 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\Login\LoginJS.js" />
     <Content Include="Scripts\Login\LoginPublicJS.js" />
+    <Content Include="Scripts\Login\RegisetrJS.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\iconfont.js" />
+    <Content Include="Scripts\PetIndex\main.js" />
+    <Content Include="Scripts\PetIndex\plugins.min.js" />
+    <Content Include="Scripts\PetIndex\vendor.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

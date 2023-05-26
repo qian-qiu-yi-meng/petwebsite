@@ -53,5 +53,29 @@ namespace NeopetsApplication.Controllers
                 return Content("404");
             }
         }
+        /// <summary>
+        /// 用户注册
+        /// </summary>
+        /// <param name="userName">用户名</param>
+        /// <param name="userPwd">密码</param>
+        /// <param name="verifyCode">验证码</param>
+        /// <returns></returns>
+        public ActionResult RegisetrUser(string userName, string userPwd, string verifyCode)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(userName) && !string.IsNullOrEmpty(userPwd) && !string.IsNullOrEmpty(verifyCode)) 
+                {
+                    string code = BLL.RegisetrBLL.RegisetrUser(userName, userPwd, verifyCode);
+                    return Content(code);
+                }
+                return Content("203");
+            }
+            catch (Exception ex)
+            {
+                Common.LogHelper.Log.Error($"RegisetrUser error:{ex}");
+                return Content("404");
+            }
+        }
     }
 }

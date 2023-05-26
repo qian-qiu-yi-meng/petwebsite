@@ -12,6 +12,7 @@
     <link href="~/Content/Login/LoginCSS.css" rel="stylesheet" />
     <script src="~/Scripts/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.staticfile.org/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    <script src="~/Scripts/Login/LoginPublicJS.js"></script>
     <script src="~/Scripts/Login/LoginJS.js"></script>
     <script type="text/javascript">
     </script>
@@ -38,11 +39,11 @@
                     <img src="/Login/SecurityCode" onclick="this.src = this.src+'?'" id="codeImg" />
                 </div>
             </div><span style="color:red" id="vCodeErrorMsg"></span>
-            <div class="checkbox">
+            <div class="checkbox" style="margin-top:15px">
                 <input type="checkbox" name="check" id="remember" tabindex="4">
                 <label>记住密码</label>
             </div>
-            <div class="login">
+            <div class="login" style="margin-top:10px">
                 <button type="submit" id="formLogin" tabindex="5">登录</button>
             </div>
         </form>
