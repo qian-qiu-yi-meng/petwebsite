@@ -1,7 +1,7 @@
 ﻿@{
     Layout = null;
 }
-
+@model Model.Product
 <!DOCTYPE html>
 
 <html lang="en">
@@ -13,7 +13,8 @@
     <link rel="stylesheet" href="~/Content/PetIndex/plugins.min.css">
     <link rel="stylesheet" href="~/Content/PetIndex/style.min.css">
     <link href="~/Content/iconfont.css" rel="stylesheet" />
-
+    
+    @{List<string> name = new List<string>();}
 </head>
 <body>
     @* 头部 *@
@@ -337,67 +338,78 @@
                     <div class="tab-content">
                         <div class="tab-pane fade show active" id="tab-product-all">
                             <div class="row m-b-n40">
-                                <div class="col-12 col-sm-6 col-lg-3 product-wrapper m-b-40">
-                                    <div class="product">
-                                        <div class="thumb">
-                                            <a href="single-product.html" class="image">
-                                                <img class="fit-image" src="~/Content/PetIndex/Product/1.png" alt="Product" />
-                                            </a>
-                                            <span class="badges">
-                                                <span class="sale">-18%</span>
-                                            </span>
-                                            <div class="action-wrapper">
-                                                <a href="#/" class="action quickview" data-bs-toggle="modal" data-bs-target="#quick-view" title="Quickview"><i class="iconfont">&#xe622;</i></a>
-                                                <a href="wishlist.html" class="action wishlist" title="Wishlist"><i class="iconfont">&#xe608;</i></a>
-                                                <a href="cart.html" class="action cart" title="Cart"><i class="iconfont">&#xe63f;</i></a>
+                                @foreach (var item in ViewBag.date as List<Model.Product>)
+                                {
+                                    <div class="col-12 col-sm-6 col-lg-3 product-wrapper m-b-40">
+                                        <div class="product">
+                                            <div class="thumb">
+                                                <a href="single-product.html" class="image">
+                                                    <img class="fit-image" src="~/Content/PetIndex/Product/@item.ProductImg" alt="Product" />
+                                                </a>
+                                                <span class="badges">
+                                                    @if (item.ProductDiscount > 0)
+                                                    {
+                                                        <span class="sale">@(item.ProductDiscount * 100)%</span>
+                                                    }
+                                                </span>
+                                                <div class="action-wrapper">
+                                                    <a onclick="@item.ProductId+showNmae()" data-bs-target="@item.ProductId" class="action quickview" data-bs-toggle="modal" id="showProduct" title="Quickview"><i class="iconfont">&#xe622;</i></a>
+                                                    <script type="text/javascript">
+                                                        function showNmae() {
+                                                            var nav = document.querySelector('#quick');
+                                                            nav.setAttribute('id',"@item.ProductId");
+                                                            nav.setAttribute('aria-labelledby',"@item.ProductId");
+                                                        }
+                                                    </script>
+                                                    <a href="wishlist.html" class="action wishlist" title="Wishlist"><i class="iconfont">&#xe608;</i></a>
+                                                    <a href="cart.html" class="action cart" title="Cart"><i class="iconfont">&#xe63f;</i></a>
+                                                </div>
+                                            </div>
+
+                                            <div class="content">
+                                                <h5 class="title"><a href="single-product.html">@item.ProductName</a></h5>
+                                                <span class="rating">
+                                                    @{bool isLoad = true;}
+                                                    @{string[] bcs = item.ProductScore.ToString().Split('.');}
+                                                    @if (bcs.Count() > 0)
+                                                    {
+                                                        for (int i = 0; i < Convert.ToInt32(bcs[0]); i++)
+                                                        {
+                                                            <i class="iconfont"> &#xe64a;</i>
+                                                        }
+                                                        for (int k = 0; k < 5 - Convert.ToInt32(bcs[0]); k++)
+                                                        {
+                                                            if (Convert.ToInt32(bcs[1]) > 5 && isLoad)
+                                                            {
+                                                                <i class="iconfont">&#xe9a2;</i>
+                                                                isLoad = false;
+                                                            }
+                                                            else
+                                                            {
+                                                                <i class="iconfont">&#xe9a1;</i>
+                                                            }
+                                                        }
+
+                                                    }
+                                                </span>
+                                                <span class="price">
+
+                                                    @if (item.ProductDiscount > 0)
+                                                    {
+                                                        <span class="new">
+                                                            ￥@((item.ProductPrice * (1-item.ProductDiscount)).ToString("F2"))
+                                                        </span>
+                                                        <span class="old">@item.ProductPrice</span>
+                                                    }
+                                                    else
+                                                    {@item.ProductPrice}
+                                                </span>
                                             </div>
                                         </div>
-                                        <div class="content">
-                                            <h5 class="title"><a href="single-product.html">荷兰侏儒兔</a></h5>
-                                            <span class="rating">
-                                                <i class="iconfont">&#xe9a1;</i>
-                                                <i class="iconfont">&#xe9a1;</i>
-                                                <i class="iconfont">&#xe9a1;</i>
-                                                <i class="iconfont">&#xe9a1;</i>
-                                                <i class="iconfont">&#xe9a1;</i>
-                                            </span>
-                                            <span class="price">
-                                                <span class="new">￥80.50</span>
-                                                <span class="old">￥85.80</span>
-                                            </span>
-                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-12 col-sm-6 col-lg-3 product-wrapper m-b-40">
-                                    <div class="product">
-                                        <div class="thumb">
-                                            <a href="single-product.html" class="image">
-                                                <img class="fit-image" src="~/Content/PetIndex/Product/2.png" alt="Product" />
-                                            </a>
-                                            <span class="badges">
-                                                <span class="new">New</span>
-                                            </span>
-                                            <div class="action-wrapper">
-                                                <a href="#/" class="action quickview" data-bs-toggle="modal" data-bs-target="#quick-view" title="Quickview"><i class="iconfont">&#xe622;</i></a>
-                                                <a href="wishlist.html" class="action wishlist" title="Wishlist"><i class="iconfont">&#xe608;</i></a>
-                                                <a href="cart.html" class="action cart" title="Cart"><i class="iconfont">&#xe63f;</i></a>
-                                            </div>
-                                        </div>
-                                        <div class="content">
-                                            <h5 class="title"><a href="single-product.html">Wait, You Need This</a></h5>
-                                            <span class="rating">
-                                                <i class="iconfont">&#xe9a2;</i>
-                                                <i class="iconfont">&#xe9a1;</i>
-                                                <i class="iconfont">&#xe9a1;</i>
-                                                <i class="iconfont">&#xe9a1;</i>
-                                                <i class="iconfont">&#xe9a1;</i>
-                                            </span>
-                                            <span class="price">
-                                                <span class="new">￥90.00</span>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
+
+                                    
+                                }
                                 <div class="col-12 col-sm-6 col-lg-3 product-wrapper m-b-40">
                                     <div class="product">
                                         <div class="thumb">
@@ -470,7 +482,8 @@
                                                 <span class="sale">-20%</span>
                                             </span>
                                             <div class="action-wrapper">
-                                                <a href="#/" class="action quickview" data-bs-toggle="modal" data-bs-target="#quick-view" title="Quickview"><i class="iconfont">&#xe622;</i></a>
+                                                <a href="#/" class="action quickview" id="showProduct" data-bs-toggle="modal" data-bs-target="#quick-view" title="Quickview"><i class="iconfont">&#xe622;</i></a>
+
                                                 <a href="wishlist.html" class="action wishlist" title="Wishlist"><i class="iconfont">&#xe608;</i></a>
                                                 <a href="cart.html" class="action cart" title="Cart"><i class="iconfont">&#xe63f;</i></a>
                                             </div>
@@ -1131,75 +1144,77 @@
     </footer>
     @* 尾部结束 *@
     @* 商品信息浏览 *@
-    <div class="modalquickview modal fade" id="quick-view" tabindex="-1" aria-labelledby="quick-view" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <button class="btn close" data-bs-dismiss="modal">×</button>
-                <div class="row">
-                    <div class="col-md-6 col-12">
-                        <<div class="modal-product-carousel">
-                            <div class="swiper-container">
-                                <div class="swiper-wrapper">
-                                    <a class="swiper-slide" href="#">
-                                        <img class="w-100" src="~/Content/PetIndex/ProductLager/1.png" alt="Product">
-                                    </a>
-                                    <a class="swiper-slide" href="#">
-                                        <img class="w-100" src="~/Content/PetIndex/ProductLager/2.png" alt="Product">
-                                    </a>
-                                    <a class="swiper-slide" href="#">
-                                        <img class="w-100" src="~/Content/PetIndex/ProductLager/3.png" alt="Product">
-                                    </a>
-                                    <a class="swiper-slide" href="#">
-                                        <img class="w-100" src="~/Content/PetIndex/ProductLager/4.png" alt="Product">
-                                    </a>
-                                    <a class="swiper-slide" href="#">
-                                        <img class="w-100" src="~/Content/PetIndex/ProductLager/5.png" alt="Product">
-                                    </a>
+        <div class="modalquickview modal fade" id="quick" tabindex="-1" aria-labelledby="quick" role="dialog" aria-hidden="true">
+            
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <button class="btn close" data-bs-dismiss="modal">×</button>
+                    <div class="row">
+                        <div class="col-md-6 col-12">
+                            <div class="modal-product-carousel">
+                                <div class="swiper-container">
+                                    <div class="swiper-wrapper">
+                                        <a class="swiper-slide" href="#">
+                                            <img class="w-100" src="~/Content/PetIndex/ProductLager/1.png" alt="Product">
+                                        </a>
+                                        <a class="swiper-slide" href="#">
+                                            <img class="w-100" src="~/Content/PetIndex/ProductLager/2.png" alt="Product">
+                                        </a>
+                                        <a class="swiper-slide" href="#">
+                                            <img class="w-100" src="~/Content/PetIndex/ProductLager/3.png" alt="Product">
+                                        </a>
+                                        <a class="swiper-slide" href="#">
+                                            <img class="w-100" src="~/Content/PetIndex/ProductLager/4.png" alt="Product">
+                                        </a>
+                                        <a class="swiper-slide" href="#">
+                                            <img class="w-100" src="~/Content/PetIndex/ProductLager/5.png" alt="Product">
+                                        </a>
+                                    </div>
+                                    <div class="swiper-pagination d-md-none"></div>
+                                    <div class="swiper-product-button-next swiper-button-next"><i class="iconfont">&#xe61f;</i></div>
+                                    <div class="swiper-product-button-prev swiper-button-prev"><i class="iconfont">&#xeb15;</i></div>
                                 </div>
-                                <div class="swiper-pagination d-md-none"></div>
-                                <div class="swiper-product-button-next swiper-button-next"><i class="iconfont">&#xe61f;</i></div>
-                                <div class="swiper-product-button-prev swiper-button-prev"><i class="iconfont">&#xeb15;</i></div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-6 col-12 overflow-hidden position-relative">
-                        <div class="product-summery position-relative">
-                            <div class="product-head m-b-15">
-                                <h2 class="product-title">红嘴鹦鹉</h2>
-                            </div>
-                            <span class="rating justify-content-start m-b-10">
-                                <i class="iconfont">&#xe64a;</i>
-                                <i class="iconfont">&#xe64a;</i>
-                                <i class="iconfont">&#xe9a2;</i>
-                                <i class="iconfont">&#xe9a1;</i>
-                                <i class="iconfont">&#xe9a1;</i>
-                            </span>
-                            <div class="price-box m-b-10">
-                                <span class="regular-price">￥70.00</span>
-                                <span class="old-price"><del>￥85.00</del></span>
-                            </div>
-                            <div class="sku m-b-15">
-                                <span>卖出: 1000</span>
-                            </div>
-                            <div class="product-inventroy m-b-15">
-                                <span class="inventroy-title"> <strong>库存:</strong></span>
-                                <span class="inventory-varient">仅剩12</span>
-                            </div>
-                            <p class="desc-content m-b-25">红嘴蓝鹊（学名：Urocissa erythrorhyncha）：是大型鸦类，体长54-65厘米。嘴、脚红色，头、颈、喉和胸黑色，头顶至后颈有一块白色至淡蓝白色或紫灰色块斑，其余上体紫蓝灰色或淡蓝灰褐色。尾长呈凸状具黑色亚端斑和白色端斑。下体白色。 黄嘴蓝鹊外形和羽色和该种非常相似，但黄嘴蓝鹊嘴为黄色，头部仅枕有白色块斑。区别仍很明显，野外不难识别。</p>
-                            <div class="quantity d-flex align-items-center justify-content-start m-b-25">
-                                <span class="m-r-10"><strong>数量: </strong></span>
-                                <div class="cart-plus-minus">
-                                    <input class="cart-plus-minus-box" value="1" type="text">
-                                    <div class="dec qtybutton"></div>
-                                    <div class="inc qtybutton"></div>
+                        <div class="col-md-6 col-12 overflow-hidden position-relative">
+                            <div class="product-summery position-relative">
+                                <div class="product-head m-b-15">
+                                    <h2 class="product-title">红嘴鹦鹉</h2>
                                 </div>
-                            </div>
-                            <div class="cart-btn action-btn m-b-30">
-                                <div class="action-cart-btn-wrapper d-flex justify-content-start">
-                                    <div class="add-to_cart">
-                                        <a class="btn btn-primary btn-hover-dark rounded-0" href="cart.html">加入购物车</a>
+                                <span class="rating justify-content-start m-b-10">
+                                    <i class="iconfont">&#xe64a;</i>
+                                    <i class="iconfont">&#xe64a;</i>
+                                    <i class="iconfont">&#xe9a2;</i>
+                                    <i class="iconfont">&#xe9a1;</i>
+                                    <i class="iconfont">&#xe9a1;</i>
+                                </span>
+                                <div class="price-box m-b-10">
+                                    <span class="regular-price">￥70.00</span>
+                                    <span class="old-price"><del>￥85.00</del></span>
+                                </div>
+                                <div class="sku m-b-15">
+                                    <span>卖出: 1000</span>
+                                </div>
+                                <div class="product-inventroy m-b-15">
+                                    <span class="inventroy-title"> <strong>库存:</strong></span>
+                                    <span class="inventory-varient">仅剩12</span>
+                                </div>
+                                <p class="desc-content m-b-25">红嘴蓝鹊（学名：Urocissa erythrorhyncha）：是大型鸦类，体长54-65厘米。嘴、脚红色，头、颈、喉和胸黑色，头顶至后颈有一块白色至淡蓝白色或紫灰色块斑，其余上体紫蓝灰色或淡蓝灰褐色。尾长呈凸状具黑色亚端斑和白色端斑。下体白色。 黄嘴蓝鹊外形和羽色和该种非常相似，但黄嘴蓝鹊嘴为黄色，头部仅枕有白色块斑。区别仍很明显，野外不难识别。</p>
+                                <div class="quantity d-flex align-items-center justify-content-start m-b-25">
+                                    <span class="m-r-10"><strong>数量: </strong></span>
+                                    <div class="cart-plus-minus">
+                                        <input class="cart-plus-minus-box" value="1" type="text">
+                                        <div class="dec qtybutton"></div>
+                                        <div class="inc qtybutton"></div>
                                     </div>
-                                    <a href="wishlist.html" title="Wishlist" class="action"><i class="iconfont">&#xe608;</i></a>
+                                </div>
+                                <div class="cart-btn action-btn m-b-30">
+                                    <div class="action-cart-btn-wrapper d-flex justify-content-start">
+                                        <div class="add-to_cart">
+                                            <a class="btn btn-primary btn-hover-dark rounded-0" href="cart.html">加入购物车</a>
+                                        </div>
+                                        <a href="wishlist.html" title="Wishlist" class="action"><i class="iconfont">&#xe608;</i></a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -1207,7 +1222,7 @@
                 </div>
             </div>
         </div>
-    </div>
+
     @* 商品信息浏览结束 *@
     @* 快捷返回头部图标 *@
     <a href="#" class="scroll-top show" id="scroll-top">
@@ -1316,5 +1331,6 @@
     <script src="~/Scripts/PetIndex/vendor.min.js"></script>
     <script src="~/Scripts/PetIndex/plugins.min.js"></script>
     <script src="~/Scripts/PetIndex/main.js"></script>
+
 </body>
 </html>
